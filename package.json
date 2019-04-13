@@ -21,11 +21,15 @@
   },
   "homepage": "https://github.com/sarweshkrishnan/Hackaday#readme",
   "nodemonConfig": {
-    "ignore": ["public/*", "node_modules/*"],
+    "ignore": [
+      "public/*",
+      "node_modules/*"
+    ],
     "delay": "2500"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "request": "^2.88.0"
   }
 }

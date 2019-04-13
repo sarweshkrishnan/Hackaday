@@ -14,7 +14,8 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-// app.get('/api/projects/', projectApi);
+// re-direct to projects module
+app.use('/api/projects/', projectApi);
 
 let distDir = __dirname + "/public";
 app.use(express.static(distDir));
@@ -23,9 +24,9 @@ app.get('/', function(req, res) {
     res.sendFile(distDir + '/index.html');
 });
 
-//The 404 Route (ALWAYS Keep this as the last route)
+// The 404 Route
 app.get('*', function(req, res){
-    res.send('what???', 404);
+    res.status(404).send('what???');
 });
   
 
