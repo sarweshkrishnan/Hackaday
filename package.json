@@ -20,6 +20,10 @@
     "url": "https://github.com/sarweshkrishnan/Hackaday/issues"
   },
   "homepage": "https://github.com/sarweshkrishnan/Hackaday#readme",
+  "nodemonConfig": {
+    "ignore": ["public/*", "node_modules/*"],
+    "delay": "2500"
+  },
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.4"
