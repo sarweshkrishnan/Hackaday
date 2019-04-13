@@ -11,11 +11,25 @@ router.use(function timeLog (req, res, next) {
 })
 
 router.get('/', function(req, res) {
-    console.log(config.apiEndpoint + "projects?api_key=" + config.apiKey)
+    apiEndpoint = config.apiEndpoint + "projects?api_key=" + config.apiKey
+
     request.get({
-        url: config.apiEndpoint + "projects?api_key=" + config.apiKey
+        url: apiEndpoint
     }, function(err, response, body) {
-        console.log(body)
+        if (err)
+        {
+            console.log("Error connecting to Hackaday API: ", err)
+            res.status(500).send("Error connecting to Hackaday API")
+        }
+        else if (response.statusCode != 200)
+        {
+            console.log("Error with Hackaday API: ", err)
+            res.status(500).send("Error with Hackaday API")
+        }
+        else
+        {
+            res.status(200).send(JSON.parse(body))
+        }
     })
 });
 

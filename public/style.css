@@ -1,1 +1,29 @@
-body {}
+body {
+    background: #171717;
+    color: #ffffff;
+}
+
+header {
+    width: 100%;
+    padding: 1%;
+    
+    text-align: center;
+
+    font-size: 24px;
+    line-height: 27px;
+    font-weight: 900;
+}
+#project_table {
+    margin: 2% 10%; 
+    width: 80%;
+    height: 80%;
+    overflow-y: auto;
+    background: #1c1c1c;
+}
+th {
+    color: #c19f54
+}
+th, td {
+    padding: 1%;
+    border: 1px solid #676767;
+  }
