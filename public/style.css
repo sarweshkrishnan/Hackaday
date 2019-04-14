@@ -20,7 +20,7 @@ header {
 }
 
 .panel-group {
-    margin: 1px 0px;
+    margin: 5px 0px;
     font-size: 16px;
 }
 
@@ -30,7 +30,7 @@ header {
 
 .panel-heading {
     background-color: #242424;
-    padding: 0.5% 1%;
+    padding: 1% 1%;
     opacity: 0.8;
 }
 .panel-heading:hover {
@@ -40,6 +40,8 @@ header {
 .panel-title {
     font-size: 16px;
     line-height: 19px;
+
+    margin: 0;
 }
 
 .project-title {

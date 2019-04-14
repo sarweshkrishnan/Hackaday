@@ -13,14 +13,34 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" type="text/css" href="style.css">
-    <script src="./script.js"></script>
+    <!-- <script src="./script.js"></script> -->
 </head>
 <body>
     <header>
         HACKADAY PROJECTS
     </header>
 
-    <div id="acc"></div>
+    <div id="acc">
+        <% for (project in projects) { %>
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <a data-toggle="collapse" href="#collapse<%= project %>">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <span class="project-title"><%= projects[project].name %>:</span>
+                            <span class="project-summary"><%= projects[project].summary.length > 100 ? projects[project].summary.substring(0, 100) + "..." : projects[project].summary %></span>
+                        </h4>
+                    </div>
+                </a>
+
+                <div id="collapse<%= project %>" class="panel-collapse collapse">
+                    <div class="panel-body">Panel Body</div>
+                    <div class="panel-footer">Panel Footer</div>
+                </div>
+            </div>
+        </div>
+        <% } %>
+    </div>
 
     <!-- <nav aria-label="Page navigation example">
         <ul class="pagination">

@@ -20,20 +20,15 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 // re-direct to projects module
-app.use('/api/projects/', projectApi);
+app.use('/', projectApi);
 
 // to serve static files
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', function(req, res) {
-    res.render('index');
-});
-
 // The 404 Route
 app.get('*', function(req, res){
-    res.status(404).send('what???');
+    res.status(404).sendfile(__dirname + 'public/404.html');
 });
-  
 
 // Initialize the app.
 let server = app.listen(process.env.PORT || 3000, function () {
