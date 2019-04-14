@@ -1,6 +1,7 @@
 // Load required modules 
 let express = require("express");
 let bodyParser = require("body-parser");
+let path = require('path')
 
 // Load API files
 const projectApi = require('./api/projectApi.js');
@@ -14,14 +15,18 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
+// configure ejs view engine
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
 // re-direct to projects module
 app.use('/api/projects/', projectApi);
 
-let distDir = __dirname + "/public";
-app.use(express.static(distDir));
+// to serve static files
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function(req, res) {
-    res.sendFile(distDir + '/index.html');
+    res.render('index');
 });
 
 // The 404 Route
