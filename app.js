@@ -5,6 +5,7 @@ let path = require('path')
 
 // Load API files
 const projectApi = require('./api/projectApi.js');
+const userApi = require('./api/userApi.js');
 
 // Store the express object
 let app = express();
@@ -20,7 +21,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 // re-direct to projects module
-app.use('/', projectApi);
+app.use(['/projects', '/projects/', '/projects/:id'], projectApi);
+app.use('/users/batch', userApi);
 
 // to serve static files
 app.use(express.static(path.join(__dirname, 'public')));

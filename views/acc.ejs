@@ -1,0 +1,37 @@
+<% for (project in projects) { %>
+    <div class="panel-group">
+        <div class="panel panel-default">
+            <a data-toggle="collapse" href="#collapse<%= project %>">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <span class="project-title"><%= projects[project].name %>:</span>
+                        <span class="project-summary"><%= projects[project].summary.length > 125 ? projects[project].summary.substring(0, 125) + "..." : projects[project].summary %></span>
+                    </h4>
+                </div>
+            </a>
+
+            <div id="collapse<%= project %>" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <div class="panel-body-tab col-sm-8">
+                            <div class="project-desc">
+                                <%= projects[project].description.length > 250 ? projects[project].description.substring(0, 250) + "..." : projects[project].description %>
+                            </div>
+
+                            <span>
+                                <a href="<%= projects[project].url %>"><%= projects[project].url %></a>
+
+                                <div class="project-other">
+                                    <i class="fa fa-eye"></i><span> <%= projects[project].views %> </span>
+                                    <i class="fa fa-comment-o"></i> <%= projects[project].comments %>
+                                    <i class="fa fa-thumbs-o-up"></i> <%= projects[project].skulls %>
+                                </div>
+                            </span>
+                    </div>
+                    
+                    <div class="user panel-body-tab col-sm-4" id="user-<%= projects[project].owner_id %>" data-toggle="tooltip" data-html="true" data-placement="left" title="The password must be:">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% } %>

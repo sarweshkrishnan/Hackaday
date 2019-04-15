@@ -11,16 +11,9 @@ router.use(function timeLog (req, res, next) {
   next();
 });
 
-router.get(['/', '/:id'], function(req, res) {
-    // get page number, default is 1
-    let page = 1;
-    if(req.params.id)
-    {
-        page = req.params.id;
-    }
-
+router.get('/', function(req, res) {
     // build API url
-    let apiEndpoint = config.apiEndpoint + "projects?api_key=" + config.apiKey + "&per_page=" + config.projects.per_page + "&page=" + page;
+    let apiEndpoint = config.apiEndpoint + "users/batch?api_key=" + config.apiKey + "&ids=" + req.query.ids;
 
     // make API call to Hackaday.io
     request.get({
@@ -33,22 +26,15 @@ router.get(['/', '/:id'], function(req, res) {
         }
         else
         {
-            let projects = [];
+            let users = [];
             try {
-                projects = JSON.parse(body).projects;
+                users = JSON.parse(body);
             }
             catch(err) {
                 console.log("Error with parsing: ", err);
             }
-
-            if(req.xhr)
-            {
-                res.render('acc', { page: page, projects: projects });
-            }
-            else
-            {
-                res.render('index', { page: page, projects: projects });
-            }
+            
+            res.send(users);
         }
     })
 });
