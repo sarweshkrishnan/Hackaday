@@ -1,8 +1,4 @@
 window.onload = function() {
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-    });
-
     // store inital page in a dictionary
     var pages = {};
     pages[curPage] = $('#acc').html();
@@ -18,17 +14,27 @@ window.onload = function() {
         $.get('/users/batch?ids=' + user_ids, function(data) {
             $.each(data.users, function(i, user) {
                 var html = `
-                <img height="90" style="float:left; margin-right: 10px;" src=`+ user.image_url +`>
-                <div>
-                <a href="` + user.url + `"> ` + user.username + `</a>
-                <div> ` + user.about_me + `</div>
-                </div>
+                <img height="80" src=`+ user.image_url +`>
                 `;
-                $('#user-' + user.id).html(html );
+                
+                $('#user-' + user.id).html(html);
+
+                var tooltip = `
+                <a href="` + user.url + `"> ` + user.username + `</a>
+                <div> ` + user.about_me +`</div>
+                <i class="fas fa-eye"></i><span>  ` + user.followers + ` </span>
+                <i class="fas fa-users"></i> ` + user.followers + `
+                <i class="fas fa-thumbs-up"></i>` + user.followers + `
+                `;
+                $('#user-' + user.id).attr('title', tooltip);
+
+                $(function () {
+                    $('[data-toggle="tooltip"]').tooltip()
+                });
             });
             
             pages[curPage] = $('#acc').html();
-            history.pushState({"html": $('#acc').html(), "pageTitle": "Hackaday Projects"}, 'Title of the page', "/projects/" +  curPage);
+            history.pushState({"html": $('#acc').html(), "pageTitle": "Hackaday Projects", "curPage": curPage}, 'Title of the page', "/projects/" +  curPage);
         });
     }
     
@@ -42,14 +48,12 @@ window.onload = function() {
             return;
         }
 
-        history.pushState({"html": $('#acc').html(), "pageTitle": "Hackaday Projects"}, "", "/projects/" +  curPage);
-
         if(pages[curPage - 1])
         {
             $("#acc").html(pages[curPage - 1]);
             curPage -= 1;
 
-            history.pushState({"html": $('#acc').html(), "pageTitle": "Hackaday Projects"}, 'Title of the page', "/projects/" +  curPage);
+            history.pushState({"html": $('#acc').html(), "pageTitle": "Hackaday Projects", "curPage": curPage}, 'Title of the page', "/projects/" +  curPage);
         }
         else
         {
@@ -71,7 +75,7 @@ window.onload = function() {
             $("#acc").html(pages[curPage + 1]);
             curPage += 1;
 
-            history.pushState({"html": $('#acc').html(), "pageTitle": "Hackaday Projects"}, 'Title of the page', "/projects/" +  curPage);
+        history.pushState({"html": $('#acc').html(), "pageTitle": "Hackaday Projects", "curPage": curPage}, "", "/projects/" +  curPage);
         }
         else
         {
@@ -92,5 +96,6 @@ window.onpopstate = function(e){
     if(e.state){
         $('#acc').html(e.state.html);
         document.title = e.state.pageTitle;
+        curPage = e.state.curPage;
     }
 };

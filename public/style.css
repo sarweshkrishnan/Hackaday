@@ -16,6 +16,46 @@ header {
 a {
     color: #c19f54;
 }
+a:hover {
+    color: #c19f54;
+    text-decoration: underline;
+}
+
+:focus {
+    outline: 0 !important;
+}
+
+i {
+    color: #c19f54 !important;
+}
+
+img {
+    border-radius: 50%;
+    opacity: 0.8;
+}
+img:hover {
+    opacity: 1;
+}
+
+.pagination {
+    width: 80%;
+    margin: 0.5% auto 0% auto;
+}
+.pagination .page-item {
+    width: 50%;
+}
+#next {
+    text-align: right;
+}
+
+.page-link {
+    color: #c19f54;
+    background: inherit;
+}
+
+.page-link: hover {
+    background: inherit;
+}
 
 #acc {
     margin: 0 10%;
@@ -44,22 +84,21 @@ a {
 .panel-title {
     font-size: 16px;
     line-height: 19px;
+    font-weight: lighter;
 
     margin: 0;
 }
 
 .panel-collapse {
-    min-height: 100px;
+    min-height: 90px;
     font-size: 13px;
-}
 
-.panel-body {
-    border: 1px solid #c19f54;
+    border-top: 1px solid #c19f54;
 }
 
 .panel-body-tab {
     float: left;
-    padding: 0.5% 1%;
+    padding: 0.5% 1% 0.5% 0%;
 }
 
 .project-title {
@@ -67,14 +106,4 @@ a {
 }
 .project-summary {
     color: #ffffff;
-}
-.project-desc {
-    margin: 1%;
-}
-.project-other {
-    float: right;
-}
-
-.project-other > i {
-    color: #c19f54;
 }

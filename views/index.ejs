@@ -13,7 +13,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/fontawesome.css" integrity="sha384-vd1e11sR28tEK9YANUtpIOdjGW14pS87bUBuOIoBILVWLFnS+MCX9T6MMf0VdPGq" crossorigin="anonymous">
 
     <link rel="stylesheet" type="text/css" href="../style.css">
     <script src="../script.js"></script>
@@ -25,8 +26,8 @@
 
     <nav aria-label="Page navigation">
         <ul class="pagination">
-            <li class="current-page page-item" id="prev"><a class="page-link" href="javascript:void(0)">Prev</a></li>
-            <li class="current-page page-item" id="next"><a class="page-link" href="javascript:void(0)">Next</a></li>
+            <li class="current-page page-item" id="prev"><a href="javascript:void(0)">&lt; Prev</a></li>
+            <li class="current-page page-item" id="next"><a href="javascript:void(0)">Next &gt;</a></li>
         </ul>
     </nav>
         
@@ -45,23 +46,21 @@
 
                 <div id="collapse<%= project %>" class="panel-collapse collapse">
                     <div class="panel-body">
-                        <div class="panel-body-tab col-sm-8">
+                        <div style="text-align: center;" class="user panel-body-tab col-sm-2" id="user-<%= projects[project].owner_id %>" data-toggle="tooltip" data-html="true" data-placement="bottom"></div>
+                        <div class="panel-body-tab col-sm-10">
                                 <div class="project-desc">
-                                    <%= projects[project].description.length > 250 ? projects[project].description.substring(0, 250) + "..." : projects[project].description %>
+                                    <%= projects[project].description.length > 500 ? projects[project].description.substring(0, 500) + "..." : projects[project].description %>
                                 </div>
 
                                 <span>
                                     <a href="<%= projects[project].url %>"><%= projects[project].url %></a>
 
-                                    <div class="project-other">
-                                        <i class="fa fa-eye"></i><span> <%= projects[project].views %> </span>
-                                        <i class="fa fa-comment-o"></i> <%= projects[project].comments %>
-                                        <i class="fa fa-thumbs-o-up"></i> <%= projects[project].skulls %>
+                                    <div style="float:right;">
+                                        <i class="fas fa-eye"></i><span> <%= projects[project].views %> </span>
+                                        <i class="fas fa-users"></i> <%= projects[project].comments %>
+                                        <i class="fas fa-thumbs-up"></i> <%= projects[project].skulls %>
                                     </div>
                                 </span>
-                        </div>
-                        
-                        <div class="user panel-body-tab col-sm-4" id="user-<%= projects[project].owner_id %>" data-toggle="tooltip" data-html="true" data-placement="left" title="The password must be:">
                         </div>
                     </div>
                 </div>
