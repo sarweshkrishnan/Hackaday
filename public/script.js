@@ -31,9 +31,9 @@ window.onload = function() {
                 var tooltip = `
                 <a href="` + user.url + `"> ` + user.username + `</a>
                 <div> ` + user.about_me +`</div>
-                <i class="fas fa-eye"></i><span>  ` + user.followers + ` </span>
-                <i class="fas fa-users"></i> ` + user.followers + `
-                <i class="fas fa-thumbs-up"></i>` + user.followers + `
+                <i class="fa fa-eye"></i><span>  ` + user.followers + ` </span>
+                <i class="fa fa-thumbs-up"></i>` + user.skulls + `
+                <i class="fa fa-cog"></i> ` + user.projects + `
                 `;
                 $('#user-' + user.id).attr('title', tooltip);
 
