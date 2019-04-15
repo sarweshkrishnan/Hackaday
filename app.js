@@ -29,7 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // The 404 Route
 app.get('*', function(req, res){
-    res.status(404).sendfile(__dirname + 'public/404.html');
+    res.status(404).sendfile(__dirname + '/public/404.html');
 });
 
 // Initialize the app.

@@ -3,6 +3,15 @@ window.onload = function() {
     var pages = {};
     pages[curPage] = $('#acc').html();
 
+    $('#loader').addClass('hide');
+
+    // enable tooltip
+    var enable_tooltip = function() {
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        });
+    }
+
     // get all user ids
     var get_user_info = function() {
         var user_ids = '';
@@ -28,9 +37,7 @@ window.onload = function() {
                 `;
                 $('#user-' + user.id).attr('title', tooltip);
 
-                $(function () {
-                    $('[data-toggle="tooltip"]').tooltip()
-                });
+                enable_tooltip();
             });
             
             pages[curPage] = $('#acc').html();
@@ -53,13 +60,19 @@ window.onload = function() {
             $("#acc").html(pages[curPage - 1]);
             curPage -= 1;
 
+            enable_tooltip();
+
             history.pushState({"html": $('#acc').html(), "pageTitle": "Hackaday Projects", "curPage": curPage}, 'Title of the page', "/projects/" +  curPage);
         }
         else
         {
+            $('#acc').html('');
+            $('#loader').removeClass('hide');
+
             $.get('/projects/' + (curPage - 1), function(data) {
-                pages[curPage - 1] = data
-                
+                $('#loader').addClass('hide');
+
+                pages[curPage - 1] = data;
                 $("#acc").html(pages[curPage - 1]);
                 curPage -= 1;
                 
@@ -69,17 +82,22 @@ window.onload = function() {
     });
 
     $('.pagination li#next').on("click", function() {
-
         if(pages[curPage + 1])
         {
             $("#acc").html(pages[curPage + 1]);
             curPage += 1;
 
-        history.pushState({"html": $('#acc').html(), "pageTitle": "Hackaday Projects", "curPage": curPage}, "", "/projects/" +  curPage);
+            enable_tooltip();
+
+            history.pushState({"html": $('#acc').html(), "pageTitle": "Hackaday Projects", "curPage": curPage}, "", "/projects/" +  curPage);
         }
         else
         {
+            $('#acc').html('');
+            $('#loader').removeClass('hide');
+
             $.get('/projects/' + (curPage + 1), function(data) {
+                $('#loader').addClass('hide');
                 pages[curPage + 1] = data
                 
                 $("#acc").html(pages[curPage + 1]);
@@ -97,5 +115,9 @@ window.onpopstate = function(e){
         $('#acc').html(e.state.html);
         document.title = e.state.pageTitle;
         curPage = e.state.curPage;
+
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        });
     }
 };

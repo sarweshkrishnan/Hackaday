@@ -30,7 +30,8 @@
             <li class="current-page page-item" id="next"><a href="javascript:void(0)">Next &gt;</a></li>
         </ul>
     </nav>
-        
+    
+    <div id="loader"></div>
     <div id="acc">
         <% for (project in projects) { %>
         <div class="panel-group">
@@ -44,12 +45,12 @@
                     </div>
                 </a>
 
-                <div id="collapse<%= project %>" class="panel-collapse collapse">
+                <div id="collapse<%= project %>" class="panel-collapse <% if(project > 0) { %> collapse <% } %>">
                     <div class="panel-body">
                         <div style="text-align: center;" class="user panel-body-tab col-sm-2" id="user-<%= projects[project].owner_id %>" data-toggle="tooltip" data-html="true" data-placement="bottom"></div>
                         <div class="panel-body-tab col-sm-10">
                                 <div class="project-desc">
-                                    <%= projects[project].description.length > 500 ? projects[project].description.substring(0, 500) + "..." : projects[project].description %>
+                                    <%= projects[project].description.length > 450 ? projects[project].description.substring(0, 450) + "..." : projects[project].description %>
                                 </div>
 
                                 <span>
